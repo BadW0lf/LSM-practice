@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="DiskTable.cs" />
     <Compile Include="DiskTablesMerger.cs" />
+    <Compile Include="FileSystem.cs" />
     <Compile Include="IFileSystem.cs" />
     <Compile Include="MemoryHash\MemoryHash.cs" />
     <Compile Include="OperationLog\Operation.cs" />

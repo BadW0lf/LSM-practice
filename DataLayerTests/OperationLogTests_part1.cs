@@ -13,7 +13,7 @@ namespace DataLayerTests
         [SetUp]
         public void SetUp()
         {
-            IFileSystem fs = NSubstitute.Substitute.For<IFileSystem>();
+            IFileSystem fs = new FileSystem();
             operationLog = new OperationLog(fs);
         }
 
