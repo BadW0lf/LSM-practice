@@ -12,7 +12,8 @@ namespace DataLayer.MemoryHash
         {
             this.operationLog = operationLog;
             memoryTable = new Dictionary<Guid, Item>();
-
+            
+           
             // заполнить из OperationLog
         }
 
@@ -21,9 +22,9 @@ namespace DataLayer.MemoryHash
             
         }
 
-        public void Get(Guid id)
+        public Item Get(Guid id)
         {
-            
+            return memoryTable[id];
         }
     }
 }
