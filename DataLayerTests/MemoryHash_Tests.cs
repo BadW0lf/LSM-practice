@@ -2,6 +2,7 @@
 using DataLayer;
 using DataLayer.MemoryHash;
 using FluentAssertions;
+using NSubstitute;
 using NUnit.Framework;
 
 namespace DataLayerTests
@@ -21,6 +22,18 @@ namespace DataLayerTests
             var memoryHash = new MemoryHash(operationLog);
        
             memoryHash.Get(expectedGuid).Should().Be(storedItem);
+        }
+
+        [Test]
+        public void ShouldStoreOperationsDirectlyOnOPerationLog()
+        {
+            var fs = NSubstitute.Substitute.For<IFileSystem>();
+            var operationLog = NSubstitute.Substitute.For<IOperationLog>();
+            var memoryHash = new MemoryHash(operationLog);
+
+            memoryHash.Add(Guid.NewGuid(), new Item(){Name = "1", Value = "1"});
+
+            operationLog.Received(1).Add(Arg.Any<Operation>());
         }
     }
 }

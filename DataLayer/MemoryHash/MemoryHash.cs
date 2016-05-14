@@ -17,7 +17,7 @@ namespace DataLayer.MemoryHash
             // заполнить из OperationLog
         }
 
-        public void Add(Item item)
+        public void Add(Guid id, Item item)
         {
             
         }
