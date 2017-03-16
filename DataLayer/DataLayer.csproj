@@ -39,10 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiskTable.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="DiskTablesMerger.cs" />
     <Compile Include="IFileSystem.cs" />
-    <Compile Include="MemoryHash\MemoryHash.cs" />
+    <Compile Include="MemoryCopy\MemoryCopy.cs" />
     <Compile Include="OperationLog\Operation.cs" />
     <Compile Include="OperationLog\OperationLog.cs" />
     <Compile Include="OperationLog\IOperationLog.cs" />

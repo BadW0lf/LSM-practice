@@ -19,7 +19,7 @@ namespace DataLayerTests
             var storedItem = new Item {Name = "1", Value = "2"};
             operationLog.Add(new Operation {Id = expectedGuid, StoredItem = storedItem});
 
-            var memoryHash = new MemoryHash(operationLog);
+            var memoryHash = new MemoryCopy(operationLog);
        
             memoryHash.Get(expectedGuid).Should().Be(storedItem);
         }
@@ -29,7 +29,7 @@ namespace DataLayerTests
         {
             var fs = NSubstitute.Substitute.For<IFileSystem>();
             var operationLog = NSubstitute.Substitute.For<IOperationLog>();
-            var memoryHash = new MemoryHash(operationLog);
+            var memoryHash = new MemoryCopy(operationLog);
 
             memoryHash.Add(Guid.NewGuid(), new Item(){Name = "1", Value = "1"});
 

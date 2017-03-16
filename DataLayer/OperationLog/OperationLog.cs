@@ -32,5 +32,10 @@ namespace DataLayer
                 return Enumerable.Empty<Operation>();
             return operations.GetRange(offset, Math.Min(count, operations.Count - offset));
         }
+
+        public IEnumerable<Operation> ReadAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

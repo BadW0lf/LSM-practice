@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DataLayer.MemoryHash;
 
 namespace DataLayer
 {
@@ -7,8 +8,11 @@ namespace DataLayer
         void WriteOnDisk(Operation operation);
         void WriteOperationsOnDisk(IEnumerable<Operation> operations);
 
-        void WriteSnapshot(MemoryHash.MemoryHash memoryHash);
+        void WriteSnapshot(MemoryHash.MemoryCopy memoryCopy);
 
-        void WriteDiskTable(MemoryHash.MemoryHash memoryHash);
+        void WriteDiskTable(MemoryHash.MemoryCopy memoryCopy);
+        IEnumerable<Operation> ReadOperationsWithOffset(int offset, int count);
+        IEnumerable<Operation> ReadAllOperations();
+        MemoryCopy ReadLastMemoryHash(IOperationLog operationLog);
     }
 }

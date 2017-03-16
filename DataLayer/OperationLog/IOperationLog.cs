@@ -8,5 +8,6 @@ namespace DataLayer
     {
         void Add(Operation operation);
         IEnumerable<Operation> Read(int offset, int count);
+        IEnumerable<Operation> ReadAll();
     }
 }
