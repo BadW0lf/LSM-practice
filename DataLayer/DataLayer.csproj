@@ -41,13 +41,20 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="DiskTablesMerger.cs" />
-    <Compile Include="IFileSystem.cs" />
-    <Compile Include="MemoryCopy\MemoryCopy.cs" />
-    <Compile Include="OperationLog\Operation.cs" />
-    <Compile Include="OperationLog\OperationLog.cs" />
-    <Compile Include="OperationLog\IOperationLog.cs" />
-    <Compile Include="Item.cs" />
+    <Compile Include="MemoryCopy\IMemTable.cs" />
+    <Compile Include="MemoryCopy\MemTable.cs" />
+    <Compile Include="OperationLog\IOpLogReader.cs" />
+    <Compile Include="OperationLog\IOpLogWriter.cs" />
+    <Compile Include="OperationLog\Operations\IOperationSerializer.cs" />
+    <Compile Include="OperationLog\Operations\IOperation.cs" />
+    <Compile Include="OperationLog\Operations\OperationSerializer.cs" />
+    <Compile Include="DataModel\Item.cs" />
+    <Compile Include="OperationLog\OpLogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\File.cs" />
+    <Compile Include="Utilities\IFile.cs" />
+    <Compile Include="Warmup\IOpLogapplier.cs" />
+    <Compile Include="Warmup\OpLogApplier.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

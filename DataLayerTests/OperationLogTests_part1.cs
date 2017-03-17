@@ -1,43 +1,54 @@
 ﻿using System;
 using DataLayer;
+using DataLayer.DataModel;
+using DataLayer.MemoryCopy;
+using DataLayer.Utilities;
+using DataLayer.Warmup;
 using FluentAssertions;
 using NUnit.Framework;
 
 namespace DataLayerTests
 {
     [TestFixture]
-    public class OperationLogTests_part1
+    public class OpLogApplierTests
     {
-        private IOperationLog operationLog;
+        private string filePath;
 
         [SetUp]
         public void SetUp()
         {
-            IFileSystem fs = NSubstitute.Substitute.For<IFileSystem>();
-            operationLog = new OperationLog(fs);
+            filePath = Guid.NewGuid().ToString();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (System.IO.File.Exists(filePath))
+                System.IO.File.Delete(filePath);
         }
 
         [Test]
-        public void Should_add_operations_to_internal_list()
+        public void Should_apply_operation_from_opLog()
         {
-            operationLog.Add(new Operation {Id = Guid.NewGuid(), StoredItem = new Item {Name = "item1", Value = "1"}});
+            var opLogManager = new OpLogManager(new File(filePath), new OperationSerializer());
+            var olApplier = new OpLogApplier(opLogManager);
+            var initialMemTable = new MemTable(opLogManager);
 
-            operationLog.Read(0, 1).Should().HaveCount(1);
-        }
+            var item1 = Item.CreateItem(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            var item2 = Item.CreateItem(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
 
-        [Test]
-        public void Should_work_fine_with_big_number_of_writes()
-        {
-            Action action = () =>
-            {
+            initialMemTable.Add(item1);
+            initialMemTable.Add(item2);
 
-                for (int i = 0; i < 200; i++)
-                {
-                    operationLog.Add(new Operation());
-                }
-            };
+            var newMemTable = new MemTable(opLogManager);
 
-            action.ShouldNotThrow<OutOfMemoryException>();
+            olApplier.Apply(newMemTable);
+
+            var itemFromTable1 = newMemTable.Get(item1.Key);
+            var itemFromTable2 = newMemTable.Get(item2.Key);
+
+            itemFromTable1.Should().Be(item1);
+            itemFromTable2.Should().Be(item2);
         }
     }
 }
