@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database.cs" />
+    <Compile Include="DatabaseManager.cs" />
     <Compile Include="DiskTablesMerger.cs" />
     <Compile Include="MemoryCopy\IMemTable.cs" />
     <Compile Include="MemoryCopy\MemTable.cs" />

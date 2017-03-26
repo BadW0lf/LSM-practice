@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseManagerTests.cs" />
     <Compile Include="MemoryHash_Tests.cs" />
     <Compile Include="OperationLogTests_part1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

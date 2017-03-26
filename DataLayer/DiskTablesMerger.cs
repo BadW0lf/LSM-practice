@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace DataLayer
 {
@@ -6,12 +7,12 @@ namespace DataLayer
     {
         public void MergeFilesBySize(DirectoryInfo directoryWithDiskTables)
         {
-            
+            throw new NotImplementedException();
         }
 
         public void MergeFilesByLevel(DirectoryInfo directoryWithDiskTables)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }
